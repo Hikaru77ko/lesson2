@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>FizzBuzz</title>
+  <style>
+li {
+  list-style-type: none;
+}
+
+.text {
+  width:160px;
+}
+
+  </style>
+</head>
+<body>
+  <h1>FizzBuzz問題</h1>
+  <label>FizzNum:<input class="text" id="fizznumber" type="text" placeholder="整数値を入力してください"></label>
+  <br>
+  <label>BuzzNum  :<input class="text" id="buzznumber" type="text" placeholder="整数値を入力してください"></label>
+  <br>
+  <button id="target">実行</button>
+  <p>【出力】</p>
+  <ul id="processingResult">
+  </ul>
+<script>
+ 'use strict';
+ document.getElementById('target').addEventListener('click',() => {
+ 
+  const fizz = document.getElementById('fizznumber');
+  const buzz = document.getElementById('buzznumber');
+  const fizzText = fizz.value;
+  const buzzText = buzz.value;
+  const processinContent = document.getElementById('processingResult')
+  processinContent.textContent= '';
+
+  const clearNumber = () => {
+    fizz.value ='';
+    buzz.value ='';
+    fizz.focus();
+  }
+
+  const errorMessage = (message) => {
+    const li = document.createElement('li');
+    const ul = document.querySelector('ul');
+      li.textContent = message;
+      ul.appendChild(li);
+  }
+  
+  const error = () => {
+    if(isNaN(fizzText) || isNaN(buzzText)){
+    errorMessage('文字列が入力されてます');
+    clearNumber();
+    return;
+ } else if(fizzText == 0 || buzzText == 0){
+    errorMessage('数値が入力されてません');
+    clearNumber();
+    return;
+ }else if(fizzText.match(/[0-9]+\.[0-9]+/) || buzzText.match(/[0-9]+\.[0-9]+/)){
+    errorMessage('少数値が入力されてます');
+    clearNumber();
+    return;
+ }
+}
+
+   for(let i = 1; i < 100; i++){
+   let result = '';
+     if(i % fizzText == 0 && i % buzzText== 0){ 
+      result = `${i} FizzBuzz`;
+   } else if(i % fizzText == 0){
+      result = `${i} Fizz`;
+   } else if(i % buzzText== 0){
+      result = `${i} Buzz`;
+ }
+
+  const fizzBuzzResult = document.createElement('li');
+  fizzBuzzResult.textContent = result;
+  processinContent.appendChild(fizzBuzzResult);
+ }
+ 
+ error();
+ clearNumber();
+ });
+
+</script>
+</body>
+</html>
