@@ -48,7 +48,8 @@ li {
       ul.appendChild(li);
   }
   
-  if(isNaN(fizzText) || isNaN(buzzText)){
+  const error = () => {
+    if(isNaN(fizzText) || isNaN(buzzText)){
     errorMessage('文字列が入力されてます');
     clearNumber();
     return;
@@ -61,6 +62,7 @@ li {
     clearNumber();
     return;
  }
+}
 
    for(let i = 1; i < 100; i++){
    let result = '';
@@ -76,7 +78,8 @@ li {
   fizzBuzzResult.textContent = result;
   processinContent.appendChild(fizzBuzzResult);
  }
-
+ 
+ error();
  clearNumber();
  });
 
