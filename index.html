@@ -15,33 +15,33 @@ li {
   </style>
 </head>
 <body>
-<h1>FizzBuzz問題</h1>
-<label>FizzNum:<input class="text" id="getText" type="text" placeholder="整数値を入力してください"></label>
-<br>
-<label>BuzzNum  :<input class="text" id="getText2" type="text" placeholder="整数値を入力してください"></label>
-<br>
-<button id="target">実行</button>
-<p>【出力】</p>
-<ul id="processingResult">
-</ul>
+  <h1>FizzBuzz問題</h1>
+  <label>FizzNum:<input class="text" id="fizznumber" type="text" placeholder="整数値を入力してください"></label>
+  <br>
+  <label>BuzzNum  :<input class="text" id="buzznumber" type="text" placeholder="整数値を入力してください"></label>
+  <br>
+  <button id="target">実行</button>
+  <p>【出力】</p>
+  <ul id="processingResult">
+  </ul>
 <script>
  'use strict';
  document.getElementById('target').addEventListener('click',() => {
  
-  const text1 = document.getElementById('getText');
-  const text2 = document.getElementById('getText2');
-  const fizzText = text1.value;
-  const buzzText = text2.value;
+  const fizz = document.getElementById('fizznumber');
+  const buzz = document.getElementById('buzznumber');
+  const fizzText = fizz.value;
+  const buzzText = buzz.value;
   const processinContent = document.getElementById('processingResult')
   processinContent.textContent= '';
 
-  function clearNumber(){
-    text1.value ='';
-    text2.value ='';
-    text1.focus();
+  const clearNumber = () => {
+    fizz.value ='';
+    buzz.value ='';
+    fizz.focus();
   }
 
-  function errorMessage(message){
+  const errorMessage = (message) => {
     const li = document.createElement('li');
     const ul = document.querySelector('ul');
       li.textContent = message;
@@ -52,15 +52,11 @@ li {
     errorMessage('文字列が入力されてます');
     clearNumber();
     return;
- } 
- 
-  if(fizzText == 0 || buzzText == 0){
+ } else if(fizzText == 0 || buzzText == 0){
     errorMessage('数値が入力されてません');
     clearNumber();
     return;
- }
-
-  if(fizzText.match(/[0-9]+\.[0-9]+/) || buzzText.match(/[0-9]+\.[0-9]+/)){
+ }else if(fizzText.match(/[0-9]+\.[0-9]+/) || buzzText.match(/[0-9]+\.[0-9]+/)){
     errorMessage('少数値が入力されてます');
     clearNumber();
     return;
